@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function startTime() {
+	var today=new Date();
+	var h=today.getHours();
+	var m=today.getMinutes();
+	var s=today.getSeconds();
+	var a=today.getMilliseconds();
+	m = checkTime(m);
+	s = checkTime(s);
+	a = checkTime(a);
+	document.getElementById('txt').innerHTML = h+":"+m+":"+s+":"+a;
+	backgroundTime(s);
+	var t = setTimeout(function(){startTime()},1);
+}
+
+function checkTime(i) {
+	if (i<0) {i = "0" + i}; // add zero in front of numbers < 10
+	return i;
+}
+
+function regularTime(i) {
+	if (i<12) {i = "0" - 6};
+	return i;
+}
+
+function backgroundTime(s) {
+	if (s % 2 === 1) {
+		document.bgColor = '228B22';
+	}
+	else {
+		document.bgColor = 'DB7093';
+	}
+}
+</script>
+
+<style>
+body {
+	text-align: center;
+	font-family: Verdana;
+	font-size: 100px;
+	margin-top: 20%;
+}
+
+</style>
+</head>
+
+<body onLoad="startTime()">
+
+<div id="txt"></div>
+
+</body>
+</html>
